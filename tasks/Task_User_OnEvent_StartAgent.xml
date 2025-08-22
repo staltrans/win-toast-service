@@ -1,0 +1,27 @@
+```
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <Triggers>
+    <EventTrigger>
+      <Enabled>true</Enabled>
+      <Subscription><![CDATA[
+        <QueryList>
+          <Query Id="0" Path="Application">
+            <Select Path="Application">*[System[Provider[@Name='MyServiceApp'] and (EventID=1001)]]</Select>
+          </Query>
+        </QueryList>
+      ]]></Subscription>
+    </EventTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Actions Context="Author">
+    <Exec>
+      <Command>%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\WinToastService\MyAgent.lnk</Command>
+    </Exec>
+  </Actions>
+</Task>
+```
